@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import MainLogo from '../../assests/MAIN-LOGO.png'
 
 const user = {
   name: 'Tom Cook',
@@ -35,9 +36,9 @@ export default function Header() {
               <div className="relative z-10 flex px-2 lg:px-0">
                 <div className="flex flex-shrink-0 items-center">
                   <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
+                    className="h-9 w-auto"
+                    src={MainLogo}
+                    alt="EVENT-SANGRAH"
                   />
                 </div>
               </div>
