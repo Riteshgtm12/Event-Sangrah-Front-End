@@ -4,7 +4,6 @@ import Card from "../components/atoms/Card";
 import { useState } from "react";
 import axios from "axios";
 import AppAlert from "../utility/AppAlert";
-import { Navigate } from "react-router-dom";
 
 const Signup = () => {
   const appAlert = AppAlert();
@@ -19,7 +18,6 @@ const Signup = () => {
   const [invalidEmailError, setInvalidEmailError] = useState('');
   const [invalidUserNameError, setInvalidUserNameError] = useState('');
   const [invalidPasswordError, setInvalidPasswordError] = useState('');
-  const [redirect , setRedirect] = useState(false);
 
   const handleNameChange = (ev: any) => {
     setName(ev.target.value);
@@ -93,20 +91,18 @@ const Signup = () => {
     })
     .then((response) => {
       if (response.status == 201) {
-        appAlert?.showAlert({message: "User Created", type: "SUCCESS", duration: 5000});
-        setRedirect(true);
+        if (appAlert && appAlert.showAlert)
+          appAlert?.showAlert({message: "User Created", type: "SUCCESS", duration: 5000});
       }
     })
     .catch((err) => {
       if (err.response.status == 400) {
-        appAlert?.showAlert({message: err.response.data.error, type: "ERROR", duration: 5000});
-        setRedirect(false);
+        if (appAlert && appAlert.showAlert)
+          appAlert?.showAlert({message: err.response.data.error, type: "ERROR", duration: 5000});
       }
     })
   }
-  if (redirect) {
-    return <Navigate to={'/login'} />;
-  }
+
   return (
     <Container>
       <Card customCss="mx-auto my-14">
